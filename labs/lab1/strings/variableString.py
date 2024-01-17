@@ -1,0 +1,3 @@
+a = "String"
+
+print(a)

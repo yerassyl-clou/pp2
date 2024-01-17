@@ -1,0 +1,1 @@
+frozenset(("apple", "banana", "cherry"))
