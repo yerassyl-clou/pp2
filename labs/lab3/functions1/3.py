@@ -4,7 +4,7 @@ legs = 94
 def solve(heads, legs):
     for i in range(heads):
         chikens = i
-        rabbits = 35 - i
+        rabbits = heads - i
 
         chikensLegs = chikens * 2
         rabbitsLegs = rabbits * 4
