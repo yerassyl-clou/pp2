@@ -3,7 +3,7 @@ import re
 txt = input()
 
 
-res = re.findall("[A-Z][a-z0-9]*", txt)         #or "[A-Z][^A-Z]"
+res = re.sub(r"[A-Z]",lambda x: " " + x[0], txt)
 
 if res:
     print(res)
