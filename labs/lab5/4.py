@@ -2,7 +2,7 @@ import re
 
 txt = input()
 
-pattern = "\b[a-z]+_[a-z]+\b"
+pattern = "^[A-Z]{1}[a-z]+$"                  #"[A-Z][a-z]+" все строки со значениями
 
 res = re.search(pattern, txt)
 

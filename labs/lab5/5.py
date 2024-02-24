@@ -2,8 +2,7 @@ import re
 
 txt = input()
 
-pattern = "\b[a-z]+_[a-z]+\b"
-
+pattern = "a.*b$"
 res = re.search(pattern, txt)
 
 if res:
