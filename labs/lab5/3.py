@@ -2,7 +2,7 @@ import re
 
 txt = input()
 
-pattern = "\b[a-z]+_[a-z]+\b"
+pattern = "([a-z]_)+[a-z]"
 
 res = re.search(pattern, txt)
 
