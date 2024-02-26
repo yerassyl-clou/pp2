@@ -6,4 +6,7 @@ pattern = "ab*"
 
 res = re.search(pattern, txt)
 
-print(res.string)
+if res:
+    print(res.string)
+else:
+    print("No match")
