@@ -4,5 +4,6 @@ lst = (a[:1])
 
 for x in a[1:]:
     lst *= x
-
+    
+#print(lst)
 print(sum(lst))
