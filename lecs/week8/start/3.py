@@ -1,17 +1,17 @@
 import pygame
-import sys
 pygame.init()
 
 screen = pygame.display.set_mode((1000, 800))           #Задать экран
 r = pygame.Rect(150, 150, 250, 200)                     #Создать прямоугольник с начальныим координатами и размерами 
+cond = True
 
 pygame.draw.rect(screen, (255, 200, 255), r, 0)         #Отображение функцией rect() На поверхности screen, определенным цветом прямоугольника r, толщиной 0
 
-while True:
+while cond:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            cond = False
     pygame.display.flip()                               #отображение изменений
 
 
