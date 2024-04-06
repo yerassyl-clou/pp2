@@ -26,12 +26,10 @@ pygame.font.init()
 screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
-foodPoints = [Point(120, 20), Point(260, 300)]
-#wallPoints = [Point(20, 200)]
+foodPoints = [Point(120, 20), Point(400, 300)]
 
 worm = Worm(20)
 food = Food(20, foodPoints)
-#wall = Wall(20, wallPoints)
 wall = Wall(20)
             
 score = 0
@@ -49,31 +47,27 @@ def generateFood():
             else:
                 index += 1
 
-    warmCheck = False
-    wallsCheck = False
-    point = Point
-    
-    totalTrue = []
-    while not all(totalTrue):                                                         #does not fall on a wall or a snake
-        p1 = random.randrange(1, 38) * 20
-        p2 = random.randrange(1, 28) * 20
 
-        totalTrue = []
+    while True:                                                                               # checking to wall and food collision 
+            p1 = random.randrange(0, 39) * 20
+            p2 = random.randrange(0, 29) * 20
 
-        for x in worm.points:                                                                       #does not fall on a snake      
+            warmCheck = False
+            wallsCheck = False
+
+            for x in worm.points:
                 if x.X == p1 and x.Y == p2:
-                    warmCheck = True
-                    totalTrue.append(warmCheck)
+                    warmCheck = True                                                            #warm
 
-        for x in wall.points:                           #wallPoints                                                               #does not fall on a wall
+            for x in wall.points:                                                               #wall
                 if x.X == p1 and x.Y == p2:
                     wallsCheck = True
-                    totalTrue.append(wallsCheck)
 
-        point = Point(p1, p2)              
+            if not warmCheck and not wallsCheck:
+                break    
         
     foodPoints.pop(index)                                                                       #deliting old food point
-    foodPoints.append(point)                                                                    #appending new food point
+    foodPoints.append(Point(p1, p2))                                                            #appending new food point
 
     return 0
 
@@ -95,6 +89,10 @@ while not done:
         score += 1                                                          #score counting
         eaten = True
 
+        if score % 5 == 0:                                                  #going to next level if score is increased by 5
+            wall.next_level()
+            level += 1
+
     if eaten:       
         generateFood()                                                      #calling generateFood function if food is eaten
         eaten = False                                                       
@@ -114,7 +112,7 @@ while not done:
     scoreTxt = font.render(str(score), True, "black")
     levelTxt = font.render(str(level), True, "black")
     screen.blit(scoreTxt, [760, 20])                                        #score counter display 
-    screen.blit(levelTxt, [10, 20])                                                 
+    screen.blit(levelTxt, [20, 20])                                         #level counter display
         
     pygame.display.flip()
-    clock.tick(8)
+    clock.tick((level * 3) + 5)
