@@ -92,14 +92,30 @@ while not done:
         score += foodWeight                                                 #score counting
         eaten = True
 
-        if score % 5 == 0:                                                  #going to next level if score is increased by 5
+
+        l1 = True
+        l2 = True
+        l3 = True
+
+        if (score == 5 or score == 6) and l1:                                                  #going to next level if score is increased by 5
             wall.next_level()
             level += 1
+            l1 = False
+        elif (score == 10 or score == 11) and l2:                                                  #going to next level if score is increased by 5
+            wall.next_level()
+            level += 1
+            l2 = False
+        elif (score == 15 or score == 16) and l3:                                                  #going to next level if score is increased by 5
+            wall.next_level()
+            level += 1
+            l3 = False
 
     if foodWeight == 1:
-        foodColor = (100, 255, 100)
-    elif foodWeight == 2:
+        #foodColor = (100, 255, 100)
         foodColor = (0, 140, 0)
+    else: 
+        #foodColor = (0, 140, 0)
+        foodColor = (100, 255, 100)
 
     if eaten:       
         generateFood()                                                      #calling generateFood function if food is eaten
