@@ -1,6 +1,11 @@
 import pygame
 import sys
 
+def getRhombus(x1, x2, y1, y2):
+    height = abs(y2 - y1)
+
+    return [(x1, (y1 + height / 2)), ((abs(x2-x1) / 2), y2), (x2, (y1 + height / 2)), ((abs(x2-x1) / 2), y1)]
+
 # Initialize Pygame
 pygame.init()
 
