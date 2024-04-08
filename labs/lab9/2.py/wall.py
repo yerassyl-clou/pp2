@@ -17,7 +17,7 @@ class Wall(GameObject):
         return result
     
     def load_level(self):
-        f = open("/Users/yerassyl/vscode/kbtu/pp2/labs/lab8/2.py/levels/level{}.txt".format(self.level), "r")                      #/Users/yerassyl/vscode/kbtu/pp2/labs/lab8/2.py/levels/level{}.txt
+        f = open("/Users/yerassyl/vscode/kbtu/pp2/labs/lab9/2.py/levels/level{}.txt".format(self.level), "r")                      #/Users/yerassyl/vscode/kbtu/pp2/labs/lab8/2.py/levels/level{}.txt
         row = -1
         col = -1
         for line in f:
