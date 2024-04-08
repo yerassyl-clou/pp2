@@ -1,5 +1,7 @@
 import pygame
 import random
+import time
+
 from game_object import GameObject
 from game_object import Point  
 from worm import Worm
@@ -13,10 +15,10 @@ def create_background(screen, width, height):
         while y < height:
                 x = 0
                 while x < width:
-                        row = y // tile_width
-                        col = x // tile_width
-                        pygame.draw.rect(screen, colors[(row + col) % 2],pygame.Rect(x, y, tile_width, tile_width))
-                        x += tile_width
+                    row = y // tile_width
+                    col = x // tile_width
+                    pygame.draw.rect(screen, colors[(row + col) % 2],pygame.Rect(x, y, tile_width, tile_width))
+                    x += tile_width
                 y += tile_width
 
 done = False
@@ -35,7 +37,9 @@ wall = Wall(20)
 score = 0
 level = 1
 
-foodWeight = 0
+foodColors = [(100,255,100), (0,140,0), (0,0,0)]
+foodRandom = 1
+foodColor = foodColors[foodRandom - 1]
 
 def generateFood():
     if food.can_eat(worm.points[0]):                                                            #if function can_eat passes is already means that points are matched
@@ -90,33 +94,32 @@ while not done:
     pos1 = food.can_eat(worm.points[0])
     if(pos1 != None):
         worm.increase(pos1)                                                 #increasing worm is food eaten    
-        foodWeight = random.randrange(1,3)
-        score += foodWeight                                                 #score counting
+        score += foodRandom                                                 #score counting
         eaten = True
 
-        if (score == 5 or score == 6) and l1:                                                  #going to next level if score is increased by 5
+        if (score == 5 or score == 6 or score == 7) and l1:                                                  #going to next level if score is increased by 5
             wall.next_level()
             level += 1
             l1 = False
-        elif (score == 10 or score == 11) and l2:                                                  #going to next level if score is increased by 5
+        elif (score == 10 or score == 11 or score == 12) and l2:                                                  #going to next level if score is increased by 5
             wall.next_level()
             level += 1
             l2 = False
-        elif (score == 15 or score == 16) and l3:                                                  #going to next level if score is increased by 5
+        elif (score == 15 or score == 16 or score == 17) and l3:                                                  #going to next level if score is increased by 5
             wall.next_level()
             level += 1
             l3 = False
 
-    if foodWeight == 1:
-        #foodColor = (100, 255, 100)
-        foodColor = (0, 140, 0)
-    else: 
-        #foodColor = (0, 140, 0)
-        foodColor = (100, 255, 100)
+
+    
 
     if eaten:       
-        generateFood()                                                      #calling generateFood function if food is eaten
         eaten = False
+
+        foodRandom = random.randrange(1,4)
+        foodColor = foodColors[foodRandom - 1]
+
+        generateFood()                                                      #calling generateFood function if food is eaten
                                                                
     pos2 = wall.collision(worm.points[0])
     if(pos2 != None): 
@@ -136,4 +139,4 @@ while not done:
     screen.blit(levelTxt, [20, 20])                                         #level counter display
         
     pygame.display.flip()
-    clock.tick((level) + 5)
+    clock.tick((level * 3) + 5)

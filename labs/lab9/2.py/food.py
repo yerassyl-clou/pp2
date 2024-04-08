@@ -25,4 +25,3 @@ class Food(GameObject):
         for point in self.points:
             pygame.draw.rect(screen, color, pygame.Rect(point.X, point.Y, self.tile_width, self.tile_width))
             pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(point.X, point.Y, self.tile_width, self.tile_width), 1)
-    
