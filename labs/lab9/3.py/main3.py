@@ -39,7 +39,6 @@ def getRhombus(x1, x2, y1, y2):
             return [(x1, (y2 + height / 2)), ((x1 + (abs(x2-x1) / 2)), y2), (x2, (y2 + height / 2)), ((x1 + (abs(x2-x1) / 2)), y1)]
         else:
             return [(x1, (y2 + height / 2)), ((x2 + (abs(x2-x1) / 2)), y2), (x2, (y2 + height / 2)), ((x2 + (abs(x2-x1) / 2)), y1)]
-    
 
 pygame.init()
 screen = pygame.display.set_mode((1000, 750))
@@ -50,8 +49,7 @@ clock = pygame.time.Clock()
 
 colorCnt = 0
 
-eventType = 0                                                       #0 - rectangle              1 - circle 
-
+eventType = 0                                                       #0 - rectangle    1 - circle    
 
 x1 = 10
 y1 = 10
@@ -71,7 +69,6 @@ while not done:
             done = True
 
         pressed = pygame.key.get_pressed()
-
         color = colors[colorCnt]
 
         if pressed[pygame.K_c]:                                                     #change colors 
@@ -83,7 +80,6 @@ while not done:
         if pressed[pygame.K_SPACE]:                                                 #switch between rect and circle 
             eventType = (eventType + 1) % 6
             
-
         if pressed[pygame.K_e]:                                                     #switch to eraser 
             eventType = 6
 
@@ -91,7 +87,7 @@ while not done:
                 screen.fill("black")
                 another_layer.fill("black")
 
-        if eventType == 0:                                                           #draw rectangle 
+        if eventType == 0:                                                          #rectangle 
             pygame.draw.rect(screen, "black", (0, 0, 40, 40))
             pygame.draw.rect(another_layer, "black", (0, 0, 40, 40))
             pygame.draw.rect(screen, color, (10, 10, 20, 30), 2)
@@ -115,8 +111,7 @@ while not done:
                         screen.blit(another_layer, (0, 0))
                         pygame.draw.rect(screen, color, pygame.Rect(getRectangle(x1, y1, x2, y2)), 5)
 
-
-        if eventType == 1:                                                                      #draw circle
+        if eventType == 1:                                                          #circle
             pygame.draw.rect(screen, "black", (0, 0, 40, 40))
             pygame.draw.rect(another_layer, "black", (0, 0, 40, 40))
             pygame.draw.circle(screen, color, (20, 20), 10, 2)
@@ -140,8 +135,7 @@ while not done:
                         screen.blit(another_layer, (0, 0))    
                         pygame.draw.ellipse(screen, color, pygame.Rect(getRectangle(x1, y1, x2, y2)), 5)
                        
-
-        if eventType == 2:                                                                                        #square
+        if eventType == 2:                                                          #square
             pygame.draw.rect(screen, "black", (0, 0, 40, 40))
             pygame.draw.rect(another_layer, "black", (0, 0, 40, 40))
             pygame.draw.rect(screen, color, (10, 10, 20, 20), 2)
@@ -165,7 +159,7 @@ while not done:
                     screen.blit(another_layer, (0, 0))
                     drawSquare(screen, color, x1, y1, x2, y2)
 
-        if eventType == 3:                                                                                        #right triangle
+        if eventType == 3:                                                          #right triangle
             pygame.draw.rect(screen, "black", (0, 0, 40, 40))
             pygame.draw.rect(another_layer, "black", (0, 0, 40, 40))
             pygame.draw.polygon(screen, color, getRightTriangle(10, 10, 20, 30), 2)
@@ -190,7 +184,7 @@ while not done:
                     triangle = getRightTriangle(x1, y1, x2, y2)
                     pygame.draw.polygon(screen, color, triangle, 5)
 
-        if eventType == 4:                                                                                        #right triangle
+        if eventType == 4:                                                          #equilateral triangle
             pygame.draw.rect(screen, "black", (0, 0, 40, 40))
             pygame.draw.rect(another_layer, "black", (0, 0, 40, 40))
             pygame.draw.polygon(screen, color, getEquilateralTriangle(15, 10, 20, 30), 2)
@@ -215,8 +209,7 @@ while not done:
                     triangle = getEquilateralTriangle(x1, y1, x2, y2)
                     pygame.draw.polygon(screen, color, triangle, 5)
 
-
-        if eventType == 5:                                                                                      #rhombus                                        
+        if eventType == 5:                                                          #rhombus                                        
             pygame.draw.rect(screen, "black", (0, 0, 40, 40))
             pygame.draw.rect(another_layer, "black", (0, 0, 40, 40))
             pygame.draw.polygon(screen, color, getRhombus(5, 25, 5, 25), 2)
@@ -240,7 +233,7 @@ while not done:
                         screen.blit(another_layer, (0, 0))
                         pygame.draw.polygon(screen, color, getRhombus(x1, x2, y1, y2), 5)
 
-        if eventType == 6:                                                                                        #eraser
+        if eventType == 6:                                                          #eraser
             pygame.draw.rect(screen, "black", (0, 0, 40, 40))
             pygame.draw.rect(another_layer, "black", (0, 0, 40, 40))
 
@@ -263,7 +256,7 @@ while not done:
                     x2 = event.pos[0]
                     y2 = event.pos[1]
                     another_layer.blit(screen, (0, 0)) 
-                    pygame.draw.line(screen, "black", (x1, y1), (x2, y2), 15)
+                    pygame.draw.line(screen, "black", (x1, y1), (x2, y2), 30)
             
 
     pygame.display.flip()
