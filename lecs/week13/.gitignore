@@ -1,0 +1,4 @@
+venv/
+
+database.ini
+__pycache__/*
