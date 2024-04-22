@@ -25,4 +25,4 @@ def update_vendor(vendor_id, vendor_name, vendor_old_name):
         return updated_row_count
 
 if __name__ == '__main__':
-    update_vendor(1, "3M Corp", "3M Co.")
+    update_vendor(1, "3M Corp", "AKM Semiconductor Inc.")
