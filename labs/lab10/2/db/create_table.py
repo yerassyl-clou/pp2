@@ -6,7 +6,8 @@ def create_tables():
         """
         CREATE TABLE IF NOT EXISTS users (
             user_id SERIAL PRIMARY KEY,
-            username VARCHAR(255) UNIQUE NOT NULL
+            username VARCHAR(255) UNIQUE NOT NULL,
+            level INTEGER
         )
         """,
         """
@@ -20,10 +21,13 @@ def create_tables():
     try:
         with psycopg2.connect(host="localhost", database="snake", user="postgres", password="123") as conn:
             with conn.cursor() as cur:
-                
                 for command in commands:
                     cur.execute(command)
-                
+                # Add ALTER TABLE command to add 'level' column to 'users' table
+                cur.execute("""
+                    ALTER TABLE users
+                    ADD COLUMN IF NOT EXISTS level INTEGER;
+                """)
                 conn.commit()
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
