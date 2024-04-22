@@ -1,7 +1,6 @@
 import psycopg2
 
 def get_user_level(username):
-    """Retrieve the current level of the user from the database."""
     try:
         # Connect to the database
         with psycopg2.connect(host="localhost", database="snake", user="postgres", password="123") as conn:
@@ -22,7 +21,6 @@ def get_user_level(username):
         return None
 
 def create_new_user(username):
-    """Create a new user in the database."""
     try:
         # Connect to the database
         with psycopg2.connect(host="localhost", database="snake", user="postgres", password="123") as conn:

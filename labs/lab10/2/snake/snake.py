@@ -10,7 +10,6 @@ from food import Food
 from wall import Wall
 
 def check_user_exists(username):
-    """Check if the user exists in the database and retrieve their current level."""
     try:
         with psycopg2.connect(host="localhost", database="snake", user="postgres", password="123") as conn:
             with conn.cursor() as cur:
@@ -21,7 +20,6 @@ def check_user_exists(username):
         return None
 
 def insert_user(username):
-    """Insert a new user into the database with level 1."""
     try:
         with psycopg2.connect(host="localhost", database="snake", user="postgres", password="123") as conn:
             with conn.cursor() as cur:
@@ -31,7 +29,6 @@ def insert_user(username):
         print("Database error:", e)
 
 def insert_score(username, level, score):
-    """Insert the user's score into the user_scores table."""
     try:
         with psycopg2.connect(host="localhost", database="snake", user="postgres", password="123") as conn:
             with conn.cursor() as cur:
@@ -44,7 +41,7 @@ def insert_score(username, level, score):
     except psycopg2.Error as e:
         print("Database error:", e)
 
-# Game setup
+
 def create_background(screen, width, height):
     colors = [(255, 255, 255), (212, 212, 212)]
     tile_width = 20
@@ -145,8 +142,6 @@ def main():
                     filtered_events.append(event)
 
         if paused:
-            # Display pause message and wait until game is unpaused
-            # Optionally, you can display a message on the screen indicating the game is paused
             continue  # Skip the rest of the game loop if paused
 
         worm.process_input(filtered_events)
